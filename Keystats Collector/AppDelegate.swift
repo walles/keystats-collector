@@ -7,21 +7,27 @@
 //
 
 import Cocoa
+import os.log
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
   @IBOutlet weak var window: NSWindow!
 
+  func enableUniversalAccess() {
+    let options : NSDictionary =
+      [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
+    if (!AXIsProcessTrustedWithOptions(options)) {
+      // In theory the user should now be prompted for access
+      os_log("Universal Access not enabled", type: .info)
+    }
+  }
 
   func applicationDidFinishLaunching(_ aNotification: Notification) {
-    // Insert code here to initialize your application
+    enableUniversalAccess()
+    Recorder().run()
   }
 
   func applicationWillTerminate(_ aNotification: Notification) {
     // Insert code here to tear down your application
   }
-
-
 }
-

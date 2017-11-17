@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB2AAFF91FBF19C500DE9578 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2AAFF81FBF19C500DE9578 /* Recorder.swift */; };
+		DB2AAFFB1FBF214A00DE9578 /* Keycodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2AAFFA1FBF214A00DE9578 /* Keycodes.swift */; };
 		DB844ECA1FBF137700DA72BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB844EC91FBF137700DA72BD /* AppDelegate.swift */; };
 		DB844ECC1FBF137700DA72BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB844ECB1FBF137700DA72BD /* Assets.xcassets */; };
 		DB844ECF1FBF137700DA72BD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB844ECD1FBF137700DA72BD /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB2AAFF81FBF19C500DE9578 /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		DB2AAFFA1FBF214A00DE9578 /* Keycodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keycodes.swift; sourceTree = "<group>"; };
 		DB844EC61FBF137700DA72BD /* Keystats Collector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Keystats Collector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB844EC91FBF137700DA72BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB844ECB1FBF137700DA72BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				DB844EC91FBF137700DA72BD /* AppDelegate.swift */,
+				DB2AAFF81FBF19C500DE9578 /* Recorder.swift */,
+				DB2AAFFA1FBF214A00DE9578 /* Keycodes.swift */,
 				DB844ECB1FBF137700DA72BD /* Assets.xcassets */,
 				DB844ECD1FBF137700DA72BD /* MainMenu.xib */,
 				DB844ED01FBF137700DA72BD /* Info.plist */,
@@ -132,6 +138,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB844ECA1FBF137700DA72BD /* AppDelegate.swift in Sources */,
+				DB2AAFF91FBF19C500DE9578 /* Recorder.swift in Sources */,
+				DB2AAFFB1FBF214A00DE9578 /* Keycodes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +270,12 @@
 				CODE_SIGN_ENTITLEMENTS = "Keystats Collector/Keystats_Collector.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Keystats Collector/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail.walles.johan.Keystats-Collector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -277,10 +287,12 @@
 				CODE_SIGN_ENTITLEMENTS = "Keystats Collector/Keystats_Collector.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Keystats Collector/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail.walles.johan.Keystats-Collector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
