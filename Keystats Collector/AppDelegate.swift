@@ -16,7 +16,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func enableUniversalAccess() {
     let options : NSDictionary =
       [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
-    if (!AXIsProcessTrustedWithOptions(options)) {
+    if (AXIsProcessTrustedWithOptions(options)) {
+      os_log("We have Universal Access, let's go")
+    } else {
       // In theory the user should now be prompted for access
       os_log("Universal Access not enabled", type: .info)
     }
