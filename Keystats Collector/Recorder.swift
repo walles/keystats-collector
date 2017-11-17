@@ -48,13 +48,15 @@ class Recorder {
       (1 << CGEventType.keyUp.rawValue) |
       (1 << CGEventType.flagsChanged.rawValue)
 
+    // FIXME: Retained vs unretained, which is it?
+    let unsafe_self = Unmanaged.passRetained(self).toOpaque()
     guard let eventTap =
       CGEvent.tapCreate(tap: .cgAnnotatedSessionEventTap,
                         place: .headInsertEventTap,
                         options: .listenOnly,
                         eventsOfInterest: CGEventMask(eventMask),
                         callback: onTapEvent,
-                        userInfo: nil) else {
+                        userInfo: unsafe_self) else {
                           os_log("failed to create event tap")
                           exit(1)
                         }
@@ -63,20 +65,20 @@ class Recorder {
     CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
     CGEvent.tapEnable(tap: eventTap, enable: true)
     CFRunLoopRun()
+
+    os_log("Run loop executing")
   }
 }
 
 func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
-  if [.keyDown , .keyUp].contains(type) {
-    var keyCode = event.getIntegerValueField(.keyboardEventKeycode)
-    if keyCode == 0 {
-      keyCode = 6
-    } else if keyCode == 6 {
-      keyCode = 0
-    }
-    event.setIntegerValueField(.keyboardEventKeycode, value: keyCode)
-  }
-  return Unmanaged.passRetained(event)
+  os_log("Johan: Got a tap event!")
+
+  // FIXME: Retained vs unretained, which is it?
+  let recorder = Unmanaged<Recorder>.fromOpaque(refcon!).takeRetainedValue()
+  recorder.tapDidReceiveEvent(event, type: type)
+
+  // FIXME: Retained vs unretained, which is it?
+  return Unmanaged.passUnretained(event)
 }
 
 func keycodeOfEvent(_ event: CGEvent) -> Int {
