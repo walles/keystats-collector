@@ -13,7 +13,9 @@ class Recorder {
 
 
       """.utf8CString
-    print(string)
+
+    // FIXME: Update our JSON file here
+    os_log("Johan: %@", [string])
   }
 
   func handleFlagsEvent(_ event: CGEvent) {
