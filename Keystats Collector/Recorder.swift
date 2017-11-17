@@ -17,7 +17,7 @@ class Recorder {
   }
 
   func handleFlagsEvent(_ event: CGEvent) {
-    let keycode = keycodeOfEvent(event: event)
+    let keycode = keycodeOfEvent(event)
     let mask = eventFlagMaskForKeycode(Int(keycode))
     if mask == 0 {
       return
@@ -77,12 +77,12 @@ func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refco
   return Unmanaged.passRetained(event)
 }
 
-func keycodeOfEvent(event: CGEvent) -> Int64 {
-  return event.getIntegerValueField(.keyboardEventKeycode)
+func keycodeOfEvent(_ event: CGEvent) -> Int {
+  return Int(event.getIntegerValueField(.keyboardEventKeycode))
 }
 
 func keynameOfEvent(event: CGEvent) -> String {
-  return keynameForKeycode(keycodeOfEvent(event))
+  return keynameForKeycode[keycodeOfEvent(event)] ?? "<UNKNOWN>"
 }
 
 func isAutorepeat(event: CGEvent) -> Bool {
