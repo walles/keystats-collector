@@ -12,10 +12,10 @@ class Recorder {
       data:{"action":"\(action)","key":"\(keynameOfEvent(event: event))"}
 
 
-      """.utf8CString
+      """
 
     // FIXME: Update our JSON file here
-    os_log("Johan: %@", [string])
+    os_log("Johan: %@", string)
   }
 
   func handleFlagsEvent(_ event: CGEvent) {
@@ -38,7 +38,7 @@ class Recorder {
     case .flagsChanged:
       handleFlagsEvent(event)
     default:
-      os_log("Ignoring non-key-event", type: .debug)
+      os_log("1Ignoring event of unsupported type", type: .debug)
     }
   }
 
