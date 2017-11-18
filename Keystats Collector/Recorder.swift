@@ -3,6 +3,8 @@ import Carbon
 import AppKit
 import os.log
 
+var global_recorder: Recorder? = nil
+
 class Recorder {
   func handleKeyEvent(_ event: CGEvent, action: String) {
     if isAutorepeat(event: event) {
@@ -48,15 +50,14 @@ class Recorder {
       (1 << CGEventType.keyUp.rawValue) |
       (1 << CGEventType.flagsChanged.rawValue)
 
-    // FIXME: Retained vs unretained, which is it?
-    let unsafe_self = Unmanaged.passRetained(self).toOpaque()
+    global_recorder = self
     guard let eventTap =
       CGEvent.tapCreate(tap: .cgAnnotatedSessionEventTap,
                         place: .headInsertEventTap,
                         options: .listenOnly,
                         eventsOfInterest: CGEventMask(eventMask),
                         callback: onTapEvent,
-                        userInfo: unsafe_self) else {
+                        userInfo: nil) else {
                           os_log("failed to create event tap")
                           exit(1)
                         }
@@ -70,12 +71,12 @@ class Recorder {
   }
 }
 
-func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>? {
+func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>?
+{
   os_log("Johan: Got a tap event!")
 
   // FIXME: Retained vs unretained, which is it?
-  let recorder = Unmanaged<Recorder>.fromOpaque(refcon!).takeRetainedValue()
-  recorder.tapDidReceiveEvent(event, type: type)
+  global_recorder!.tapDidReceiveEvent(event, type: type)
 
   // FIXME: Retained vs unretained, which is it?
   return Unmanaged.passUnretained(event)
