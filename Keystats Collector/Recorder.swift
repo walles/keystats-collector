@@ -4,20 +4,37 @@ import AppKit
 import os.log
 
 var global_recorder: Recorder? = nil
+let FILENAME = "/Users/johan/keystats.json"
 
 class Recorder {
+  func read_stats() -> NSDictionary {
+    // Inspired by: https://stackoverflow.com/a/39688629/473672
+    do {
+      let jsonData = try NSData(contentsOfFile: FILENAME, options: NSData.ReadingOptions.mappedIfSafe)
+      do {
+        let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+        return jsonResult
+      } catch {
+        os_log("JSON reading failed", type: .error)
+      }
+    } catch {
+      os_log("Opening JSON file failed", type: .error)
+    }
+  }
+
   func handleKeyEvent(_ event: CGEvent, action: String) {
     if isAutorepeat(event: event) {
       return
     }
-    let string = """
-      data:{"action":"\(action)","key":"\(keynameOfEvent(event: event))"}
+    if (action != "down") {
+      return
+    }
 
-
-      """
-
-    // FIXME: Update our JSON file here
-    os_log("Johan: %@", string)
+    let stats = read_stats()
+    // FIXME: Update our memory structure with the keypress
+    // FIXME: Write memory structure to temporary file
+    // FIXME: mv tempfile.json ~/keystats.json
+    write_stats(stats)
   }
 
   func handleFlagsEvent(_ event: CGEvent) {
@@ -75,7 +92,6 @@ func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refco
 {
   os_log("Johan: Got a tap event!")
 
-  // FIXME: Retained vs unretained, which is it?
   global_recorder!.tapDidReceiveEvent(event, type: type)
 
   // FIXME: Retained vs unretained, which is it?
