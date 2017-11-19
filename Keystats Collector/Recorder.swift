@@ -20,7 +20,7 @@ class Recorder {
       }
     } catch {
       os_log("Opening JSON file failed", type: .error)
-      return nil
+      return [:]
     }
   }
 
@@ -56,7 +56,7 @@ class Recorder {
 
     // Update our memory structure with the keypress
     let from_stats = stats![keynameOfEvent(event)]
-    if (from_stats == nil) {
+    if (from_stats != nil) {
       count = from_stats!
     }
     stats![keynameOfEvent(event)] = count + 1;
