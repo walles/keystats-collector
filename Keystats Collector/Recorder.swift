@@ -7,13 +7,13 @@ var global_recorder: Recorder? = nil
 let FILENAME = "/Users/johan/keystats.json"
 
 class Recorder {
-  func read_stats() -> NSDictionary {
+  func read_stats() -> Dictionary<String, Int> {
     // Inspired by: https://stackoverflow.com/a/39688629/473672
     do {
       let jsonData = try NSData(contentsOfFile: FILENAME, options: NSData.ReadingOptions.mappedIfSafe)
       do {
-        let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-        return jsonResult
+        let jsonResult = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)
+        return jsonResult as! Dictionary<String, Int>
       } catch {
         os_log("JSON reading failed", type: .error)
       }
@@ -22,7 +22,7 @@ class Recorder {
     }
   }
 
-  func write_stats(_ stats: NSDictionary) {
+  func write_stats(_ stats: Dictionary<String, Int>) {
     // Write JSON to a temporary file
     var jsonData: Data!
     do {
