@@ -7,18 +7,20 @@ var global_recorder: Recorder? = nil
 let FILENAME = "/Users/johan/keystats.json"
 
 class Recorder {
-  func read_stats() -> Dictionary<String, Int> {
+  func read_stats() -> Dictionary<String, Int>? {
     // Inspired by: https://stackoverflow.com/a/39688629/473672
     do {
       let jsonData = try NSData(contentsOfFile: FILENAME, options: NSData.ReadingOptions.mappedIfSafe)
       do {
         let jsonResult = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)
-        return jsonResult as! Dictionary<String, Int>
+        return (jsonResult as! Dictionary<String, Int>)
       } catch {
         os_log("JSON reading failed", type: .error)
+        return nil
       }
     } catch {
       os_log("Opening JSON file failed", type: .error)
+      return nil
     }
   }
 
@@ -49,14 +51,17 @@ class Recorder {
       return
     }
 
-    let stats = read_stats()
-    // FIXME: Update our memory structure with the keypress
-    if (stats has entry for this key) {
-      // FIXME: Update stats for this key
-    } else {
-      // FIXME: Add count of one for this key
+    var stats = read_stats()
+    var count = 0
+
+    // Update our memory structure with the keypress
+    let from_stats = stats![keynameOfEvent(event)]
+    if (from_stats == nil) {
+      count = from_stats!
     }
-    write_stats(stats)
+    stats![keynameOfEvent(event)] = count + 1;
+
+    write_stats(stats!)
   }
 
   func handleFlagsEvent(_ event: CGEvent) {
@@ -124,7 +129,7 @@ func keycodeOfEvent(_ event: CGEvent) -> Int {
   return Int(event.getIntegerValueField(.keyboardEventKeycode))
 }
 
-func keynameOfEvent(event: CGEvent) -> String {
+func keynameOfEvent(_ event: CGEvent) -> String {
   return keynameForKeycode[keycodeOfEvent(event)] ?? "<UNKNOWN>"
 }
 
