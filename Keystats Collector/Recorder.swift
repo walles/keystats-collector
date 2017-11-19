@@ -25,14 +25,9 @@ class Recorder {
   }
 
   func write_stats(_ stats: Dictionary<String, Int>) {
-    // Write JSON to a temporary file
-    var jsonData: Data!
     do {
-      jsonData = try JSONSerialization.data(withJSONObject: stats, options: JSONSerialization.WritingOptions())
-      try jsonData.write(to: URL(fileURLWithPath: FILENAME + ".tmp"))
-
-      // Rename temp file on top of the actual destination file
-      try FileManager.default.moveItem(atPath: FILENAME + ".tmp", toPath: FILENAME)
+      let jsonData = try JSONSerialization.data(withJSONObject: stats, options: JSONSerialization.WritingOptions())
+      try jsonData.write(to: URL(fileURLWithPath: FILENAME), options: Data.WritingOptions.atomic)
     } catch let error as NSError {
       os_log("%@", "JSON saving failed: \(error.localizedDescription)")
     }
