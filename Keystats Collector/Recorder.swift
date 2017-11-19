@@ -4,13 +4,14 @@ import AppKit
 import os.log
 
 var global_recorder: Recorder? = nil
-let FILENAME = "/Users/johan/keystats.json"
 
 class Recorder {
+  let stats_file_name = FileManager.default.homeDirectoryForCurrentUser.path + "/keystats.json"
+
   func read_stats() -> Dictionary<String, Int>? {
     // Inspired by: https://stackoverflow.com/a/39688629/473672
     do {
-      let jsonData = try NSData(contentsOfFile: FILENAME, options: NSData.ReadingOptions.mappedIfSafe)
+      let jsonData = try NSData(contentsOfFile: stats_file_name, options: NSData.ReadingOptions.mappedIfSafe)
       do {
         let jsonResult = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)
         return (jsonResult as! Dictionary<String, Int>)
@@ -27,7 +28,7 @@ class Recorder {
   func write_stats(_ stats: Dictionary<String, Int>) {
     do {
       let jsonData = try JSONSerialization.data(withJSONObject: stats, options: JSONSerialization.WritingOptions())
-      try jsonData.write(to: URL(fileURLWithPath: FILENAME), options: Data.WritingOptions.atomic)
+      try jsonData.write(to: URL(fileURLWithPath: stats_file_name), options: Data.WritingOptions.atomic)
     } catch let error as NSError {
       os_log("%@", "JSON saving failed: \(error.localizedDescription)")
     }
@@ -107,8 +108,6 @@ class Recorder {
 
 func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>?
 {
-  os_log("Johan: Got a tap event!")
-
   global_recorder!.tapDidReceiveEvent(event, type: type)
 
   // FIXME: Retained vs unretained, which is it?
