@@ -29,17 +29,12 @@ class Recorder {
     var jsonData: Data!
     do {
       jsonData = try JSONSerialization.data(withJSONObject: stats, options: JSONSerialization.WritingOptions())
-    } catch let error as NSError {
-      os_log("%@", "Array to JSON conversion failed: \(error.localizedDescription)")
-    }
-    let file = FileHandle(forWritingAtPath: FILENAME + ".tmp")
-    file!.write(jsonData)
+      try jsonData.write(to: URL(fileURLWithPath: FILENAME + ".tmp"))
 
-    // Rename temp file on top of the actual destination file
-    do {
+      // Rename temp file on top of the actual destination file
       try FileManager.default.moveItem(atPath: FILENAME + ".tmp", toPath: FILENAME)
     } catch let error as NSError {
-      os_log("%@", "Renaming JSON file failed: \(error.localizedDescription)")
+      os_log("%@", "JSON saving failed: \(error.localizedDescription)")
     }
   }
 
