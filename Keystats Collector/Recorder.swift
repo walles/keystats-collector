@@ -6,18 +6,53 @@ import os.log
 var global_recorder: Recorder? = nil
 
 class Recorder {
+  let stats_file_name = FileManager.default.homeDirectoryForCurrentUser.path + "/keystats.json"
+
+  func read_stats() -> Dictionary<String, Int>? {
+    // Inspired by: https://stackoverflow.com/a/39688629/473672
+    do {
+      let jsonData = try NSData(contentsOfFile: stats_file_name, options: NSData.ReadingOptions.mappedIfSafe)
+      do {
+        let jsonResult = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)
+        return (jsonResult as! Dictionary<String, Int>)
+      } catch {
+        os_log("JSON reading failed", type: .error)
+        return nil
+      }
+    } catch {
+      os_log("Opening JSON file failed", type: .error)
+      return [:]
+    }
+  }
+
+  func write_stats(_ stats: Dictionary<String, Int>) {
+    do {
+      let jsonData = try JSONSerialization.data(withJSONObject: stats, options: JSONSerialization.WritingOptions())
+      try jsonData.write(to: URL(fileURLWithPath: stats_file_name), options: Data.WritingOptions.atomic)
+    } catch let error as NSError {
+      os_log("%@", "JSON saving failed: \(error.localizedDescription)")
+    }
+  }
+
   func handleKeyEvent(_ event: CGEvent, action: String) {
     if isAutorepeat(event: event) {
       return
     }
-    let string = """
-      data:{"action":"\(action)","key":"\(keynameOfEvent(event: event))"}
+    if (action != "down") {
+      return
+    }
 
+    var stats = read_stats()
+    var count = 0
 
-      """
+    // Update our memory structure with the keypress
+    let from_stats = stats![keynameOfEvent(event)]
+    if (from_stats != nil) {
+      count = from_stats!
+    }
+    stats![keynameOfEvent(event)] = count + 1;
 
-    // FIXME: Update our JSON file here
-    os_log("Johan: %@", string)
+    write_stats(stats!)
   }
 
   func handleFlagsEvent(_ event: CGEvent) {
@@ -73,9 +108,6 @@ class Recorder {
 
 func onTapEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent, refcon: UnsafeMutableRawPointer?) -> Unmanaged<CGEvent>?
 {
-  os_log("Johan: Got a tap event!")
-
-  // FIXME: Retained vs unretained, which is it?
   global_recorder!.tapDidReceiveEvent(event, type: type)
 
   // FIXME: Retained vs unretained, which is it?
@@ -86,7 +118,7 @@ func keycodeOfEvent(_ event: CGEvent) -> Int {
   return Int(event.getIntegerValueField(.keyboardEventKeycode))
 }
 
-func keynameOfEvent(event: CGEvent) -> String {
+func keynameOfEvent(_ event: CGEvent) -> String {
   return keynameForKeycode[keycodeOfEvent(event)] ?? "<UNKNOWN>"
 }
 
