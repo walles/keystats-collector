@@ -22,6 +22,25 @@ class Recorder {
     }
   }
 
+  func write_stats(_ stats: NSDictionary) {
+    // Write JSON to a temporary file
+    var jsonData: Data!
+    do {
+      jsonData = try JSONSerialization.data(withJSONObject: stats, options: JSONSerialization.WritingOptions())
+    } catch let error as NSError {
+      os_log("%@", "Array to JSON conversion failed: \(error.localizedDescription)")
+    }
+    let file = FileHandle(forWritingAtPath: FILENAME + ".tmp")
+    file!.write(jsonData)
+
+    // Rename temp file on top of the actual destination file
+    do {
+      try FileManager.default.moveItem(atPath: FILENAME + ".tmp", toPath: FILENAME)
+    } catch let error as NSError {
+      os_log("%@", "Renaming JSON file failed: \(error.localizedDescription)")
+    }
+  }
+
   func handleKeyEvent(_ event: CGEvent, action: String) {
     if isAutorepeat(event: event) {
       return
@@ -32,8 +51,11 @@ class Recorder {
 
     let stats = read_stats()
     // FIXME: Update our memory structure with the keypress
-    // FIXME: Write memory structure to temporary file
-    // FIXME: mv tempfile.json ~/keystats.json
+    if (stats has entry for this key) {
+      // FIXME: Update stats for this key
+    } else {
+      // FIXME: Add count of one for this key
+    }
     write_stats(stats)
   }
 
