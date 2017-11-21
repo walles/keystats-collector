@@ -23,6 +23,4 @@ app is running, this file will be continuously updated.
 For a toplist, run `./toplist.sh`, or `watch ./toplist.sh`.
 
 ## Future
-Maybe visualize the contents of that JSON file using something like this:
-* https://github.com/pa7/Keyboard-Heatmap
-* https://github.com/mayoff/keyscope
+Visualize the contents of that JSON file using <https://github.com/pa7/Keyboard-Heatmap>.
