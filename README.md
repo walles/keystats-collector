@@ -5,8 +5,72 @@ The point is that I want to know which keys I type the most, to draw conclusions
 about which kind of keyboard I should have and what layout would be useful or
 not.
 
-## Instructions
-This isn't amazingly usable, patches welcome.
+# Conclusions
+TL;DR: Get yourself [an ErgoDox keyboard](https://ergodox-ez.com/) with [silent
+switches](https://www.cherrymx.de/en/products/mx-silent-red.html).
+
+This is based on two criteria:
+* **I want to reach all of my top 50% keys without moving my
+hands.**
+* **I want a keyboard that is quiet enough not to annoy my peers when I'm
+working.**
+
+According to my collected stats from home where I mostly code I press 59
+different keys.
+
+The below table lists my top 10 keys, making up about 50% of all
+my keypresses. It also lists whether I can comfortably type these keys without
+moving my hands on different keyboards:
+
+ | | [MacBook keyboard](https://www.replacementlaptopkeys.com/product_images/uploaded_images/touchbar-macbook-pro-2nd-gen-butterfly-keyboard-keys.jpg) | [Kinesis Advantage2](https://www.kinesis-ergo.com/shop/advantage2/) / [ErgoDox](https://ergodox-ez.com/) |
+ |--------------|------------------|------------------------------|
+ | Tab          | -                | OK!                          |
+ | RightCommand | -                | OK!                          |
+ | Return       | -                | OK!                          |
+ | E            | OK!              | OK!                          |
+ | Backspace    | -                | OK!                          |
+ | Space        | OK!              | OK!                          |
+ | A            | OK!              | OK!                          |
+ | UpArrow      | -                | OK!                          |
+ | RightArrow   | -                | OK!                          |
+ | Shift        | Almost           | OK!                          |
+
+ErgoDox and the Kinesis Advantage2 get to share a column since their layouts are
+almost identical.
+
+So the choice is between the ErgoDox and the Kinesis Advantage2.
+
+## Kinesis Advantage2
+I have used the Kinesis Advantage2 and its predecessor the Ergo Elan for 10+
+years and I really love them. However, my colleagues have noted the keyboard's
+noisiness.
+
+When I asked Kinesis (November 2017) whether I could get one with silent switches, they said that:
+> At this point we do not plan to start offering any other type of key switch. If we were to start seeing a high demand for these new switches, we may reconsider at that time.
+
+So no silent Kinesis Advantage2 for me.
+
+## ErgoDox
+With the ErgoDox I can [pick my own
+switches](https://ergodox-ez.com/pages/customize), and one of the options is
+the [Silent Red](https://www.cherrymx.de/en/products/mx-silent-red.html). This
+should make my peers happier.
+
+The downside for me with the ErgoDox is that it's currently (November 2017) not
+available with Nordic keycaps, so I may have to get the keycaps elsewhere, or
+just steal them from my to-be-replaced Advantage2.
+
+[The ErgoDox seems to be popular in Sweden
+though](https://trends.google.se/trends/explore?date=all&q=ergodox#GEO_MAP), and
+I did mention that to the ErgoDox people so we'll see what happens :).
+
+And the conclusion for me is that the ErgoDox keyboard is really my only option.
+
+# Instructions
+If you want to try for yourself.
+
+Once you're up and running it works really well, but getting there isn't
+amazingly simple, patches welcome.
 * `git clone git@github.com:walles/keystats-collector.git`
 * `cd keystats-collector`
 * `open "Keystats Collector.xcodeproj/"`
