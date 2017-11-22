@@ -12,30 +12,28 @@ TL;DR: Get yourself [an ErgoDox keyboard](https://ergodox-ez.com/) with [silent
 switches](https://www.cherrymx.de/en/products/mx-silent-red.html).
 
 This is based on two criteria:
-* **I want to reach all of my top 50% keys without moving my
-hands.**
+* **I want to reach all of my top 50% keys (not keystrokes) without moving /
+rotating my hands.**
 * **I want a keyboard that is quiet enough not to annoy my peers when I'm
 working.**
 
-According to my collected stats from home where I mostly code I press 59
-different keys.
+According to my collected stats from work I press 70 different keys.
 
-The below table lists my top 10 keys, making up about 50% of all
-my keypresses. It also lists whether I can comfortably type these keys without
-moving my hands on different keyboards:
+The below table lists my top 50% keystrokes excluding letters (because all
+letters are reachable on all keyboards, so including them would just make the
+table larger). It also lists whether I can comfortably type these keys without
+moving or rotating my hands on different keyboards:
 
  | | [MacBook keyboard](https://www.replacementlaptopkeys.com/product_images/uploaded_images/touchbar-macbook-pro-2nd-gen-butterfly-keyboard-keys.jpg) | [Kinesis Advantage2](https://www.kinesis-ergo.com/shop/advantage2/) / [ErgoDox](https://ergodox-ez.com/) |
- |--------------|------------------|------------------------------|
- | Tab          | -                | OK!                          |
- | RightCommand | -                | OK!                          |
- | Return       | -                | OK!                          |
- | E            | OK!              | OK!                          |
- | Backspace    | -                | OK!                          |
- | Space        | OK!              | OK!                          |
- | A            | OK!              | OK!                          |
- | UpArrow      | -                | OK!                          |
- | RightArrow   | -                | OK!                          |
- | Shift        | Almost           | OK!                          |
+ |--------------|--------------------|--------------------------------|
+ | Space        | :white_check_mark: | :white_check_mark:             |
+ | Backspace    | :arrows_counterclockwise: Needs rotation | :white_check_mark:             |
+ | Return       | :arrows_counterclockwise: Needs rotation | :white_check_mark:             |
+ | Shift        | :white_check_mark: | :white_check_mark:             |
+ | Arrow keys   | :x:                | :white_check_mark:             |
+ | Command      | :white_check_mark: | :white_check_mark:             |
+ | Period       | :white_check_mark: | :white_check_mark:             |
+ | Tab          | :white_check_mark: | :white_check_mark:             |
 
 ErgoDox and the Kinesis Advantage2 get to share a column since their layouts are
 almost identical.
@@ -66,7 +64,8 @@ just steal them from my to-be-replaced Advantage2.
 though](https://trends.google.se/trends/explore?date=all&q=ergodox#GEO_MAP), and
 I did mention that to the ErgoDox people so we'll see what happens :).
 
-And the conclusion for me is that the ErgoDox keyboard is really my only option.
+## Conclusion
+The conclusion given the above data is that the ErgoDox keyboard is my only option.
 
 # Instructions
 If you want to try for yourself.
