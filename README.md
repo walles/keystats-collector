@@ -5,6 +5,8 @@ The point is that I want to know which keys I type the most, to draw conclusions
 about which kind of keyboard I should have and what layout would be useful or
 not.
 
+[See below](#instructions) for how to conduct this experiment for yourself.
+
 # Conclusions
 TL;DR: Get yourself [an ErgoDox keyboard](https://ergodox-ez.com/) with [silent
 switches](https://www.cherrymx.de/en/products/mx-silent-red.html).
