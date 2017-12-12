@@ -8,8 +8,8 @@ not.
 [See below](#instructions) for how to conduct this experiment for yourself.
 
 # Conclusions
-TL;DR: Get yourself [an ErgoDox keyboard](https://ergodox-ez.com/) with [silent
-switches](https://www.cherrymx.de/en/products/mx-silent-red.html).
+**TL;DR:** Get yourself [an ErgoDox EZ keyboard](https://ergodox-ez.com/) with
+[silent switches](https://www.cherrymx.de/en/products/mx-silent-red.html).
 
 This is based on two criteria:
 * **I want to reach all of my top 50% keys (not keystrokes) without moving /
@@ -24,7 +24,7 @@ letters are reachable on all keyboards, so including them would just make the
 table larger). It also lists whether I can comfortably type these keys without
 moving or rotating my hands on different keyboards:
 
- | | [MacBook keyboard](https://www.replacementlaptopkeys.com/product_images/uploaded_images/touchbar-macbook-pro-2nd-gen-butterfly-keyboard-keys.jpg) | [Kinesis Advantage2](https://www.kinesis-ergo.com/shop/advantage2/) / [ErgoDox](https://ergodox-ez.com/) |
+ | | [MacBook keyboard](https://www.replacementlaptopkeys.com/product_images/uploaded_images/touchbar-macbook-pro-2nd-gen-butterfly-keyboard-keys.jpg) | [Kinesis Advantage2](https://www.kinesis-ergo.com/shop/advantage2/) / [ErgoDox](https://www.ergodox.io/) |
  |--------------|--------------------|--------------------------------|
  | Space        | :white_check_mark: | :white_check_mark:             |
  | Backspace    | :arrows_counterclockwise: Needs rotation | :white_check_mark:             |
@@ -51,21 +51,44 @@ When I asked Kinesis (November 2017) whether I could get one with silent switche
 So no silent Kinesis Advantage2 for me.
 
 ## ErgoDox
-With the ErgoDox I can [pick my own
+"ErgoDox" is just [a keyboard spec](https://www.ergodox.io/), but I want to
+*buy* a keyboard, not build one.
+
+I found two suppliers of pre-built ErgoDox keyboards, and in December 2017 here
+are their offerings:
+
+|                      | [ErgoDox EZ](https://ergodox-ez.com/pages/customize) | [FalbaTech](https://falba.tech/product-category/shop-by-category/) |
+|----------------------|------------|-----------|
+| Nordic Keycaps       | :x:        | :x:       |
+| English Keycaps      | :white_check_mark: | :x: |
+| Silent Switches      | :white_check_mark: | :x: |
+| Built-in Wrist Rests | :x:        | :white_check_mark: |
+
+And since the silencing part is why I got into this in the first place, the
+[ErgoDox EZ](https://ergodox-ez.com/) is my only option.
+
+That said, if the
+[FalbaTech](https://falba.tech/product-category/shop-by-category/) offering had
+come with silent switches and at least English keycaps (they only offered blank
+ones when I checked) I would have preferred them; I really do like their options
+for cases with built in wrist support.
+
+With the ErgoDox EZ I can [pick my own
 switches](https://ergodox-ez.com/pages/customize), and one of the options is
 the [Silent Red](https://www.cherrymx.de/en/products/mx-silent-red.html). This
 should make my peers happier.
 
-The downside for me with the ErgoDox is that it's currently (November 2017) not
-available with Nordic keycaps, so I may have to get the keycaps elsewhere, or
-just steal them from my to-be-replaced Advantage2.
+The downside for me with the ErgoDox EZ is that it's currently (November 2017)
+not available with Nordic keycaps, so I may have to get the keycaps elsewhere,
+or just steal them from my to-be-replaced Advantage2.
 
 [The ErgoDox seems to be popular in Sweden
 though](https://trends.google.se/trends/explore?date=all&q=ergodox#GEO_MAP), and
-I did mention that to the ErgoDox people so we'll see what happens :).
+I did mention that to the ErgoDox EZ people so we'll see what happens :).
 
 ## Conclusion
-The conclusion given the above data is that the ErgoDox keyboard is my only option.
+The conclusion given the above data is that the ErgoDox EZ keyboard is my only
+option.
 
 # Instructions
 If you want to try for yourself.
@@ -88,4 +111,6 @@ app is running, this file will be continuously updated.
 For a toplist, run `./toplist.sh`, or `watch ./toplist.sh`.
 
 ## Future
-Visualize the contents of that JSON file using <https://github.com/pa7/Keyboard-Heatmap>.
+* Add chords to the JSON file. This could help you figure out if you're commonly
+using the wrong SHIFT key for example, or how to configure your ErgoDox layout.
+* Visualize the contents of that JSON file using <https://github.com/pa7/Keyboard-Heatmap>.
