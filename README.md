@@ -9,7 +9,9 @@ not.
 
 # Conclusions
 **TL;DR:** Get yourself [an ErgoDox EZ keyboard](https://ergodox-ez.com/) with
-[silent switches](https://www.cherrymx.de/en/products/mx-silent-red.html).
+[silent switches](https://www.cherrymx.de/en/products/mx-silent-red.html). I got
+one for myself, and I'm using [this
+configuration](http://configure.ergodox-ez.com/keyboard_layouts/kpxxya/edit).
 
 This is based on two criteria:
 * **I want to reach all of my top 50% keys (not keystrokes) without moving /
